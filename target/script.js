@@ -151,8 +151,7 @@ Page.prototype.generatePantheon = function(classicFantasyTaste) {
   // ナラティヴのタグをあてはめる.
   data = _.shuffle(AppData.divinity.narrativeFactors);
   var expelDislikes = Utils.nextBoolean();
-  var racialTags = ['フェイ', 'ドラゴン', 'ドワーフ', 'ジャイアント'];
-  var elementalTags = ['風', '水', '火'];
+  var racialTags = ['フェイ', 'ドラゴン', 'ドワーフ', 'ジャイアント', 'アビス', '地獄'];
   var limit = 99;
   var x = 1;
   while (x < limit && data.length !== 0) {

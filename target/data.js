@@ -113,14 +113,14 @@ AppData.divinity = {
     {
       titleJa: '地獄',
       alignment: -1,
-      expels: [7],
-      unmatch: [0, 1, 4, 11, 14]
+      expels: [2, 7, 9, 14],
+      unmatch: [0, 1, 4, 11]
     },
     {
       titleJa: 'アビス',
       alignment: -1,
-      expels: [5, 7, 14],
-      unmatch: [2, 4, 10, 11]
+      expels: [2, 5, 7, 9, 14],
+      unmatch: [4, 10, 11]
     },
     {
       titleJa: '水',
