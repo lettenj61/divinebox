@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>DEMO WITH PURE CSS</title>
+    <link rel="stylesheet" href="./css/pure-min.css">
+    <link rel="stylesheet" href="./css/custom.css">
+  </head>
+  <body>
+    <script src="./libs/lodash.min.js"></script>
+    <script src="./libs/jquery-2.2.4.min.js"></script>
+    <script src="./data.js"></script>
+    <script src="./script.js"></script>
+    <div id="grid-wrapper" class="pure-g">
+      <div id="left-reserve" class="pure-u-1-8"></div>
+      <div id="main" class="pure-u-3-4">
+        <h1>Hello?</h1>
+        <p>Next generation futures.</p>
+        <p id="debug-area"></p>
+        <p id="content-control">
+          <button id="toggle-domain-refs" class="button-sm pure-button">領域表の表示ON/OFF</button>
+          <button id="generate-pantheon" class="button-sm pure-button">パンテオン生成</button>
+        </p>
+        <div id="sandwitch"></div>
+        <div id="dice-function">
+          <p>
+            <select id="dice-counts">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select><span style="margin: 1em;">D</span>
+            <select id="dice-sides">
+              <option value="4">4</option>
+              <option value="6">6</option>
+              <option value="8">8</option>
+              <option value="12">12</option>
+              <option value="20">20</option>
+              <option value="100">100</option>
+            </select>
+            <button id="roll-button" class="button-sm pure-button">振る!</button>
+            <input id="roll-result" type="text" readonly>
+          </p>
+        </div>
+        <div id="auto-generate">
+          <table id="generated-data" class="table-ja pure-table"></table>
+        </div>
+        <table id="divinity-ref-data" class="table-ja pure-table"></table>
+      </div>
+    </div>
+    <script>
+      $( function() {
+        var page = new Page();
+        page.init();
+      });
+    </script>
+  </body>
+</html>

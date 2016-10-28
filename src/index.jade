@@ -1,0 +1,46 @@
+//output:../target/index.html
+- var counts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+- var sides = [4, 6, 8, 12, 20, 100]
+
+doctype html
+html
+  head
+    meta(http-equiv="Content-Type" content="text/html; charset=UTF-8")
+    title DEMO WITH PURE CSS
+    link(rel="stylesheet" href="./css/pure-min.css")
+    link(rel="stylesheet" href="./css/custom.css")
+  body
+    script(src="./libs/lodash.min.js")
+    script(src="./libs/jquery-2.2.4.min.js")
+    script(src="./data.js")
+    script(src="./script.js")
+    #grid-wrapper.pure-g
+      #left-reserve.pure-u-1-8
+      #main.pure-u-3-4
+        h1 Hello?
+        p Next generation futures.
+        p#debug-area
+        p#content-control
+          //- button#pushme.button-sm.button-success.pure-button PUSH
+          button#toggle-domain-refs.button-sm.pure-button 領域表の表示ON/OFF
+          button#generate-pantheon.button-sm.pure-button パンテオン生成
+        #sandwitch
+        #dice-function
+          p
+            select#dice-counts
+              for i in counts
+                option(value=i) #{i}
+            span(style="margin: 1em;") D
+            select#dice-sides
+              for i in sides
+                option(value=i) #{i}
+            button#roll-button.button-sm.pure-button 振る!
+            input#roll-result(type="text" readonly)
+        #auto-generate
+          table#generated-data.table-ja.pure-table
+        table#divinity-ref-data.table-ja.pure-table
+    script.
+      $( function() {
+        var page = new Page();
+        page.init();
+      });
