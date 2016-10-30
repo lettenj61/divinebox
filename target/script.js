@@ -66,6 +66,8 @@ var Page = function() {
   this.alignments = ['無属性', '秩序にして善', '善', '悪', '混沌にして悪'];
 
   this.domainRefVisible = false;
+
+  this.gridView = null;
 };
 
 
@@ -257,10 +259,21 @@ Page.prototype.init = function() {
   // パンテオン生成ボタンのハンドラ
   $('#generate-pantheon').click( function() {
     var pantheon = self.generatePantheon();
-    console.log(
-      JSON.stringify({pantheon: pantheon})
+    console.log(JSON.stringify(pantheon));
+    var dataArray = [];
+    for (var i = 0; i < pantheon.length; i++) {
+      var p = pantheon[i];
+      dataArray.push([
+        p.id,
+        Utils.join(p.powers),
+        (p.narratives) ? Utils.join(p.narratives) : ''
+      ]);
+    }
+    $('#handson-sample').empty();
+    new Handsontable(
+      document.getElementById('handson-sample'),
+      {data: dataArray}
     );
-    console.log(pantheon.length);
   });
 
   self.createDomainHeader();

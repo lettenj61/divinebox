@@ -8,10 +8,12 @@ html
     meta(http-equiv="Content-Type" content="text/html; charset=UTF-8")
     title DEMO WITH PURE CSS
     link(rel="stylesheet" href="./css/pure-min.css")
+    link(rel="stylesheet" href="./css/handsontable.full.css")
     link(rel="stylesheet" href="./css/custom.css")
   body
     script(src="./libs/lodash.min.js")
     script(src="./libs/jquery-2.2.4.min.js")
+    script(src="./libs/handsontable.full.js")
     script(src="./data.js")
     script(src="./script.js")
     #grid-wrapper.pure-g
@@ -38,6 +40,7 @@ html
             input#roll-result(type="text" readonly)
         #auto-generate
           table#generated-data.table-ja.pure-table
+          #handson-sample
         table#divinity-ref-data.table-ja.pure-table
     script.
       $( function() {
