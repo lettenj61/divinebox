@@ -2,15 +2,15 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>pure-css</title>
+    <title>umm-gen-divinity-sample</title>
     <link rel="stylesheet" href="./css/pure-min.css">
-    <link rel="stylesheet" href="./css/handsontable.full.css">
+    <!--link(rel="stylesheet" href="./css/handsontable.full.css")-->
     <link rel="stylesheet" href="./css/custom.css">
   </head>
   <body>
     <script src="./libs/lodash.min.js"></script>
     <script src="./libs/jquery-2.2.4.min.js"></script>
-    <script src="./libs/handsontable.full.js"></script>
+    <!--script(src="./libs/handsontable.full.js")-->
     <script src="./data.js"></script>
     <script src="./script.js"></script>
     <script src="./addons.js"></script>
@@ -20,12 +20,12 @@
         <h1>Test Page</h1>
         <p>Next generation futures.</p>
         <p id="debug-area">
-          <textarea id="debug-ta" rows="32" cols="80"></textarea>
+          <textarea id="debug-ta" rows="16" cols="80"></textarea>
         </p>
         <p id="content-control">
           <button id="toggle-domain-refs" class="button-sm pure-button">SHOW/HIDE DOMAINS</button>
           <button id="generate-pantheon" class="button-sm pure-button">GET PANTHEON</button>
-          <!--button#convert-tsv-test.button-sm.pure-button TSVテスト-->
+          <input id="toggle-json-utils" type="checkbox"><span style="margin: 0.2em;">JSON整形機能表示</span>
         </p>
         <div id="sandwitch"></div>
         <div id="dice-function">
@@ -53,6 +53,10 @@
             <button id="roll-button" class="button-sm pure-button">GO!</button>
             <input id="roll-result" type="text" readonly>
           </p>
+        </div>
+        <div id="json-utils" style="margin-bottom: 3.2em; display: none;">
+          <textarea id="json-formatter-ta" rows="8" cols="80"></textarea>
+          <button id="json-fomat" class="button-sm pure-button">CSVを整形</button>
         </div>
         <div id="auto-generate">
           <table id="generated-data" class="table-ja pure-table"></table>

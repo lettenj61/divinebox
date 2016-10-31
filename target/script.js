@@ -52,10 +52,6 @@ var Utils = {
   * ページ固有の処理
   */
 var Page = function() {
-  // should be implemented!!
-
-  this.primaryDomains = ['嵐', '狂気', '裁き', '死', '自然', '専制',
-    '戦争', '太陽', '地', '力', '知識', '月', '破壊', '秘術', '文明', '闇'];
 
   this.knownWarpriestsDomains = ['嵐', '死', '専制', '太陽', '地', '知識',
     '月', '秘術'];
@@ -66,6 +62,7 @@ var Page = function() {
   this.alignments = ['無属性', '秩序にして善', '善', '悪', '混沌にして悪'];
 
   this.domainRefVisible = false;
+  this.jsonUtilsVisible = false;
 
   this.gridView = null;
 };
@@ -102,7 +99,7 @@ Page.prototype.createDomainRows = function() {
   * AppData.jsに定義されている要素をシャッフルしてパンテオンをランダム生成.
   */
 Page.prototype.generatePantheon = function() {
-  var domains = _.cloneDeep(AppData.divinity.powerElements);
+  var domains = _.cloneDeep(AppData.divinity.divinePowerDomains);
   var pantheonSize = Utils.nextInt(8) + 8;
 
   var pantheon = [];
@@ -118,6 +115,8 @@ Page.prototype.generatePantheon = function() {
 
     deity['domains'] = deity.domains || [];
     deity.domains.push(utmost.title);
+    deity['domainsJa'] = deity.domainsJa || [];
+    deity.domainsJa.push(utmost.titleJa);
 
     pantheon.push(deity);
     deity = {};
@@ -140,18 +139,40 @@ Page.prototype.generatePantheon = function() {
       }
       var tag = subDomain.title;
       var freq = tagsFrequency[tag] || 0;
-      // if tag is already used, retry just one time.
-      if (freq > 0) {
+      var retryCount = 0;
+      // if tag is already used, retry few times.
+      while (candidates.length > 1 && retryCount < 5 && freq > 0) {
         subDomain = _.sample(_.without(candidates, subDomain));
         tag = subDomain.title;
         freq = tagsFrequency[tag] || 0;
+        retryCount++;
       }
-      tagsFrequency[tag] = ++freq;
-      p.domains.push(tag);
+      if (_.indexOf(p.domains, tag) === -1) {
+        tagsFrequency[tag] = ++freq;
+        p.domains.push(tag);
+        p.domainsJa.push(subDomain.titleJa);
+      }
 
       if (subDomain.weight === 1 || freq > 1) {
         _.remove(domains, subDomain);
       }
+    }
+  });
+
+  // fill narratives.
+  var narratives = _.cloneDeep(AppData.divinity.acceptableNarrativeDomains);
+  _.forEach(narratives, function(n) {
+    var keyDomain = n.domain;
+    var accepted = _.find(_.shuffle(pantheon), function(p) {
+      if (p.domains.length < 2) {
+        return false;
+      } else {
+        return p.domains[0] === keyDomain || p.domains[1] === keyDomain;
+      }
+    });
+    if (accepted) {
+      accepted.domains.push(n.narrative);
+      accepted.domainsJa.push(n.narrativeJa);
     }
   });
 
@@ -173,12 +194,12 @@ Page.prototype.doDiceRoll = function() {
 };
 
 
-Page.prototype.toggleDomainRefVisibility = function(visible) {
-  var $tbl = $('#divinity-ref-data');
-  if (visible) {
-    $tbl.css('display', 'table');
+Page.prototype.toggleElementVisibility = function(selector, visibility, displayStyle) {
+  var $target = $(selector);
+  if (visibility === true) {
+    $target.css('display', displayStyle);
   } else {
-    $tbl.css('display', 'none');
+    $target.css('display', 'none');
   }
 };
 
@@ -192,7 +213,11 @@ Page.prototype.init = function() {
   // 領域対応表トグルのハンドラ
   $('#toggle-domain-refs').click( function() {
     self.domainRefVisible = !(self.domainRefVisible);
-    self.toggleDomainRefVisibility(self.domainRefVisible);
+    self.toggleElementVisibility(
+      '#divinity-ref-data',
+      self.domainRefVisible,
+      'table'
+    );
   });
 
   // サイコロ機能のハンドラ
@@ -200,19 +225,29 @@ Page.prototype.init = function() {
     self.doDiceRoll();
   });
 
+  // JSON書式整形機能のハンドラ
+  $('#toggle-json-utils').click( function() {
+    self.jsonUtilsVisible = !(self.jsonUtilsVisible);
+    self.toggleElementVisibility(
+      '#json-utils',
+      self.jsonUtilsVisible,
+      'block'
+    )
+  });
+  $('#json-fomat').click( function() {
+    var input = $('#json-formatter-ta').val();
+    $('#debug-ta').text(
+      JSON.stringify(Utils.convertCsvData(input, '\n', '\t')));
+  })
+
   // パンテオン生成ボタンのハンドラ
   $('#generate-pantheon').click( function() {
     var pantheon = self.generatePantheon();
     console.log(JSON.stringify(pantheon));
     var dataArray = [];
     _.forEach(pantheon, function(p) {
-      dataArray.push(p.id + '\t' + _.join(p.domains, '\t'));
+      dataArray.push(p.id + '\t' + _.join(p.domainsJa, '\t'));
     });
-    $('#handson-sample').empty();
-    // new Handsontable(
-    //   document.getElementById('handson-sample'),
-    //   {data: dataArray}
-    // );
     $('#debug-ta').text(_.join(dataArray, '\n'));
   });
 

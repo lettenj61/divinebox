@@ -6,14 +6,14 @@ doctype html
 html
   head
     meta(http-equiv="Content-Type" content="text/html; charset=UTF-8")
-    title pure-css
+    title umm-gen-divinity-sample
     link(rel="stylesheet" href="./css/pure-min.css")
-    link(rel="stylesheet" href="./css/handsontable.full.css")
+    //link(rel="stylesheet" href="./css/handsontable.full.css")
     link(rel="stylesheet" href="./css/custom.css")
   body
     script(src="./libs/lodash.min.js")
     script(src="./libs/jquery-2.2.4.min.js")
-    script(src="./libs/handsontable.full.js")
+    //script(src="./libs/handsontable.full.js")
     script(src="./data.js")
     script(src="./script.js")
     script(src="./addons.js")
@@ -23,12 +23,13 @@ html
         h1 Test Page
         p Next generation futures.
         p#debug-area
-          textarea#debug-ta(rows="32" cols='80')
+          textarea#debug-ta(rows="16" cols='80')
         p#content-control
           //- button#pushme.button-sm.button-success.pure-button PUSH
           button#toggle-domain-refs.button-sm.pure-button SHOW/HIDE DOMAINS
           button#generate-pantheon.button-sm.pure-button GET PANTHEON
-          //button#convert-tsv-test.button-sm.pure-button TSVテスト
+          input#toggle-json-utils(type="checkbox")
+          span(style="margin: 0.2em;") JSON整形機能表示
         #sandwitch
         #dice-function
           p
@@ -41,6 +42,9 @@ html
                 option(value=i) #{i}
             button#roll-button.button-sm.pure-button GO!
             input#roll-result(type="text" readonly)
+        #json-utils(style="margin-bottom: 3.2em; display: none;")
+          textarea#json-formatter-ta(rows="8" cols='80')
+          button#json-fomat.button-sm.pure-button CSVを整形
         #auto-generate
           table#generated-data.table-ja.pure-table
           #handson-sample
