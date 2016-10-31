@@ -332,3 +332,248 @@ AppData.divinity = {
     }
   ]
 };
+
+AppData.names = {
+  supernatural: [
+    {
+      "name": "Asradorn",
+      "nameJa": "アスラドーン"
+    },
+    {
+      "name": "Bearrid",
+      "nameJa": "ビアリッド"
+    },
+    {
+      "name": "Caragonn",
+      "nameJa": "カラゴン"
+    },
+    {
+      "name": "Cythe",
+      "nameJa": "キューズ"
+    },
+    {
+      "name": "Drelgan",
+      "nameJa": "ドレルガン"
+    },
+    {
+      "name": "Dwemworth",
+      "nameJa": "ドウェムワース"
+    },
+    {
+      "name": "Ea",
+      "nameJa": "エア"
+    },
+    {
+      "name": "Eugilith",
+      "nameJa": "ユーギリス"
+    },
+    {
+      "name": "Frandiana",
+      "nameJa": "フランディアナ"
+    },
+    {
+      "name": "Ghorbelle",
+      "nameJa": "ゴーベル"
+    },
+    {
+      "name": "Halmacarse",
+      "nameJa": "ハルマカース"
+    },
+    {
+      "name": "Hithelion",
+      "nameJa": "ハイテリオン"
+    },
+    {
+      "name": "Idovald",
+      "nameJa": "イドヴァルド"
+    },
+    {
+      "name": "Izroth",
+      "nameJa": "イズロス"
+    },
+    {
+      "name": "Jurrath",
+      "nameJa": "ジュラス"
+    },
+    {
+      "name": "Krossoth",
+      "nameJa": "クロッソス"
+    },
+    {
+      "name": "Laphish",
+      "nameJa": "ラフィシュ"
+    },
+    {
+      "name": "Madhdar",
+      "nameJa": "マズダー"
+    },
+    {
+      "name": "Mortgha",
+      "nameJa": "モルトガ"
+    },
+    {
+      "name": "Neanberda",
+      "nameJa": "ネアンベルダ"
+    },
+    {
+      "name": "Nicheus",
+      "nameJa": "ニケウス"
+    },
+    {
+      "name": "Orias",
+      "nameJa": "オリアス"
+    },
+    {
+      "name": "Orvandal",
+      "nameJa": "オルヴァンダル"
+    },
+    {
+      "name": "Proculius",
+      "nameJa": "プロクリウス"
+    },
+    {
+      "name": "Quazzam",
+      "nameJa": "クアザム"
+    },
+    {
+      "name": "Rhosaria",
+      "nameJa": "ローサリア"
+    },
+    {
+      "name": "Sunridder",
+      "nameJa": "サンリダー"
+    },
+    {
+      "name": "Thearo",
+      "nameJa": "テアロ"
+    },
+    {
+      "name": "Ulgarth",
+      "nameJa": "ウルガース"
+    },
+    {
+      "name": "Undaven",
+      "nameJa": "アンダヴェン"
+    },
+    {
+      "name": "Veerdite",
+      "nameJa": "ヴェーアダイト"
+    },
+    {
+      "name": "Voandark",
+      "nameJa": "ヴォーンダーク"
+    },
+    {
+      "name": "Weghonia",
+      "nameJa": "ウェゴニア"
+    },
+    {
+      "name": "Xennahya",
+      "nameJa": "ゼンナーヤ"
+    },
+    {
+      "name": "Xorkkus",
+      "nameJa": "ゾークス"
+    },
+    {
+      "name": "Zeph",
+      "nameJa": "ゼフ"
+    },
+    {
+      "name": "Aggshim",
+      "nameJa": "アグシム"
+    },
+    {
+      "name": "Evun Furreth",
+      "nameJa": "イヴン・フューレス"
+    },
+    {
+      "name": "Geardrado",
+      "nameJa": "ギアドラド"
+    },
+    {
+      "name": "Sahbera",
+      "nameJa": "サーベラ"
+    },
+    {
+      "name": "Shivrekk",
+      "nameJa": "シヴレック"
+    },
+    {
+      "name": "Dan Fadarghn ",
+      "nameJa": "ダン・ファダルーン"
+    },
+    {
+      "name": "Chulbeth",
+      "nameJa": "チュルベス"
+    },
+    {
+      "name": "Diorn",
+      "nameJa": "ディオーン"
+    },
+    {
+      "name": "Temperrel",
+      "nameJa": "テンペレル"
+    },
+    {
+      "name": "Draishan",
+      "nameJa": "ドレイシャン"
+    },
+    {
+      "name": "Nogor Haramon",
+      "nameJa": "ノゴル・ハラモン"
+    },
+    {
+      "name": "Harrexus",
+      "nameJa": "ハレクサス"
+    },
+    {
+      "name": "Fulvaading",
+      "nameJa": "フルヴァディング"
+    },
+    {
+      "name": "Mudo Wallmar",
+      "nameJa": "ムド・ウォルマル"
+    },
+    {
+      "name": "Lephei",
+      "nameJa": "レフェイ"
+    },
+    {
+      "name": "Roggran",
+      "nameJa": "ログラン"
+    },
+    {
+      "name": "Atrasinha",
+      "nameJa": "アトラシンナ"
+    },
+    {
+      "name": "Vikana",
+      "nameJa": "ヴィカーナ"
+    },
+    {
+      "name": "Khuvara",
+      "nameJa": "クヴァラ"
+    },
+    {
+      "name": "Grrelni",
+      "nameJa": "グレルニ"
+    },
+    {
+      "name": "Sallyvat",
+      "nameJa": "サリーヴァット"
+    },
+    {
+      "name": "Schunnaji",
+      "nameJa": "シューナジ"
+    },
+    {
+      "name": "Mahadra",
+      "nameJa": "マハドラ"
+    },
+    {
+      "name": "Melladaya",
+      "nameJa": "メラダーヤ"
+    }
+  ]
+};

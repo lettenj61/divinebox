@@ -100,6 +100,7 @@ Page.prototype.createDomainRows = function() {
   */
 Page.prototype.generatePantheon = function() {
   var domains = _.cloneDeep(AppData.divinity.divinePowerDomains);
+  var names = _.cloneDeep(AppData.names.supernatural);
   var pantheonSize = Utils.nextInt(8) + 8;
 
   var pantheon = [];
@@ -107,10 +108,14 @@ Page.prototype.generatePantheon = function() {
 
   for (var i = 0; i < pantheonSize; i++) {
     domains = _.shuffle(domains);
+    names = _.shuffle(names);
     var heavyDomains = _.filter(domains, { 'weight': 1 });
     var utmost = _.sample(heavyDomains);
 
+    var name = _.sample(names);
+
     deity.id = i;
+    deity.name = name.name;
     deity.alignment = utmost.alignment;
 
     deity['domains'] = deity.domains || [];
@@ -121,6 +126,7 @@ Page.prototype.generatePantheon = function() {
     pantheon.push(deity);
     deity = {};
     _.remove(domains, utmost);
+    _.remove(names, name);
   }
 
   var tagsFrequency = {};
@@ -210,6 +216,11 @@ Page.prototype.toggleElementVisibility = function(selector, visibility, displayS
 Page.prototype.init = function() {
   var self = this;
 
+  // デバッグ出力領域クリアボタン
+  $('#clear-debug-ta').click(function() {
+    $('#debug-ta').text('');
+  });
+
   // 領域対応表トグルのハンドラ
   $('#toggle-domain-refs').click( function() {
     self.domainRefVisible = !(self.domainRefVisible);
@@ -243,10 +254,11 @@ Page.prototype.init = function() {
   // パンテオン生成ボタンのハンドラ
   $('#generate-pantheon').click( function() {
     var pantheon = self.generatePantheon();
-    console.log(JSON.stringify(pantheon));
+    //console.log(JSON.stringify(pantheon));
     var dataArray = [];
     _.forEach(pantheon, function(p) {
-      dataArray.push(p.id + '\t' + _.join(p.domainsJa, '\t'));
+      var v = [p.id, p.name];
+      dataArray.push(_.join(v.concat(p.domains), '\t'));
     });
     $('#debug-ta').text(_.join(dataArray, '\n'));
   });
