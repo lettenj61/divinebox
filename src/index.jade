@@ -6,7 +6,7 @@ doctype html
 html
   head
     meta(http-equiv="Content-Type" content="text/html; charset=UTF-8")
-    title DEMO WITH PURE CSS
+    title pure-css
     link(rel="stylesheet" href="./css/pure-min.css")
     link(rel="stylesheet" href="./css/handsontable.full.css")
     link(rel="stylesheet" href="./css/custom.css")
@@ -16,16 +16,19 @@ html
     script(src="./libs/handsontable.full.js")
     script(src="./data.js")
     script(src="./script.js")
+    script(src="./addons.js")
     #grid-wrapper.pure-g
       #left-reserve.pure-u-1-8
       #main.pure-u-3-4
-        h1 Hello?
+        h1 Test Page
         p Next generation futures.
         p#debug-area
+          textarea#debug-ta(rows="32" cols='80')
         p#content-control
           //- button#pushme.button-sm.button-success.pure-button PUSH
-          button#toggle-domain-refs.button-sm.pure-button 領域表の表示ON/OFF
-          button#generate-pantheon.button-sm.pure-button パンテオン生成
+          button#toggle-domain-refs.button-sm.pure-button SHOW/HIDE DOMAINS
+          button#generate-pantheon.button-sm.pure-button GET PANTHEON
+          //button#convert-tsv-test.button-sm.pure-button TSVテスト
         #sandwitch
         #dice-function
           p
@@ -36,7 +39,7 @@ html
             select#dice-sides
               for i in sides
                 option(value=i) #{i}
-            button#roll-button.button-sm.pure-button 振る!
+            button#roll-button.button-sm.pure-button GO!
             input#roll-result(type="text" readonly)
         #auto-generate
           table#generated-data.table-ja.pure-table

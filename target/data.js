@@ -140,5 +140,211 @@ AppData.divinity = {
       expels: [8],
       unmatch: [5, 7]
     },
+  ],
+  powerElements: [
+    {
+      "titleJa": "愛",
+      "title": "Love",
+      "weight": 0,
+      "alignment": 1
+    },
+    {
+      "titleJa": "欺き",
+      "title": "Trickery",
+      "weight": 0,
+      "alignment": 0
+    },
+    {
+      "titleJa": "嵐",
+      "title": "Storm",
+      "weight": 1,
+      "alignment": 0
+    },
+    {
+      "titleJa": "アンデッド",
+      "title": "Undeath",
+      "weight": 0,
+      "alignment": -1
+    },
+    {
+      "titleJa": "海",
+      "title": "Sea",
+      "weight": 0,
+      "alignment": 0
+    },
+    {
+      "titleJa": "希望",
+      "title": "Hope",
+      "weight": 0,
+      "alignment": 1
+    },
+    {
+      "titleJa": "狂気",
+      "title": "Madness",
+      "weight": 1,
+      "alignment": -1
+    },
+    {
+      "titleJa": "苦痛",
+      "title": "Torment",
+      "weight": 0,
+      "alignment": -1
+    },
+    {
+      "titleJa": "幸運",
+      "title": "Luck",
+      "weight": 0,
+      "alignment": 0
+    },
+    {
+      "titleJa": "裁き",
+      "title": "Justice",
+      "weight": 1,
+      "alignment": 1
+    },
+    {
+      "titleJa": "死",
+      "title": "Death",
+      "weight": 1,
+      "alignment": 0
+    },
+    {
+      "titleJa": "自然",
+      "title": "Wilderness",
+      "weight": 1,
+      "alignment": 0
+    },
+    {
+      "titleJa": "自由",
+      "title": "Freedom",
+      "weight": 0,
+      "alignment": 0
+    },
+    {
+      "titleJa": "宿命",
+      "title": "Fate",
+      "weight": 0,
+      "alignment": 0
+    },
+    {
+      "titleJa": "生命",
+      "title": "Life",
+      "weight": 0,
+      "alignment": 1
+    },
+    {
+      "titleJa": "専制",
+      "title": "Tyranny",
+      "weight": 1,
+      "alignment": -1
+    },
+    {
+      "titleJa": "戦争",
+      "title": "War",
+      "weight": 1,
+      "alignment": 0
+    },
+    {
+      "titleJa": "創造",
+      "title": "Creation",
+      "weight": 0,
+      "alignment": 0
+    },
+    {
+      "titleJa": "太陽",
+      "title": "Sun",
+      "weight": 1,
+      "alignment": 1
+    },
+    {
+      "titleJa": "地",
+      "title": "Earth",
+      "weight": 1,
+      "alignment": 0
+    },
+    {
+      "titleJa": "力",
+      "title": "Strength",
+      "weight": 1,
+      "alignment": 0
+    },
+    {
+      "titleJa": "知識",
+      "title": "Knowledge",
+      "weight": 1,
+      "alignment": 0
+    },
+    {
+      "titleJa": "月",
+      "title": "Moon",
+      "weight": 1,
+      "alignment": 0
+    },
+    {
+      "titleJa": "毒",
+      "title": "Poison",
+      "weight": 0,
+      "alignment": -1
+    },
+    {
+      "titleJa": "破壊",
+      "title": "Destruction",
+      "weight": 1,
+      "alignment": -1
+    },
+    {
+      "titleJa": "秘術",
+      "title": "Arcana",
+      "weight": 1,
+      "alignment": 0
+    },
+    {
+      "titleJa": "復讐",
+      "title": "Vengeance",
+      "weight": 0,
+      "alignment": 0
+    },
+    {
+      "titleJa": "冬",
+      "title": "Winter",
+      "weight": 0,
+      "alignment": 0
+    },
+    {
+      "titleJa": "不和",
+      "title": "Strife",
+      "weight": 0,
+      "alignment": -1
+    },
+    {
+      "titleJa": "文明",
+      "title": "Civilization",
+      "weight": 1,
+      "alignment": 1
+    },
+    {
+      "titleJa": "変化",
+      "title": "Change",
+      "weight": 0,
+      "alignment": 0
+    },
+    {
+      "titleJa": "防御",
+      "title": "Protection",
+      "weight": 0,
+      "alignment": 1
+    },
+    {
+      "titleJa": "闇",
+      "title": "Darkness",
+      "weight": 1,
+      "alignment": 0
+    },
+    {
+      "titleJa": "技",
+      "title": "Skill",
+      "weight": 0,
+      "alignment": 0
+    }
   ]
 };

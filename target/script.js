@@ -101,115 +101,59 @@ Page.prototype.createDomainRows = function() {
 /**
   * AppData.jsに定義されている要素をシャッフルしてパンテオンをランダム生成.
   */
-Page.prototype.generatePantheon = function(classicFantasyTaste) {
-  classicFantasyTaste = classicFantasyTaste || true;
+Page.prototype.generatePantheon = function() {
+  var domains = _.cloneDeep(AppData.divinity.powerElements);
+  var pantheonSize = Utils.nextInt(8) + 8;
 
-  var self = this;
-  var data = _.shuffle(AppData.divinity.primalFactors);
-  // 神格の数は(1d6+6)柱
-  var pantheonSize = Utils.nextInt(6) + 6;
   var pantheon = [];
-  var divinityId = 0;
-  var i, divinity, element;
-  for (i = 0; i < data.length; i++) {
+  var deity = {};
 
-    if (divinityId >= pantheonSize) {
-      divinityId = 0;
-    }
+  for (var i = 0; i < pantheonSize; i++) {
+    domains = _.shuffle(domains);
+    var heavyDomains = _.filter(domains, { 'weight': 1 });
+    var utmost = _.sample(heavyDomains);
 
-    element = data[i];
-    divinity = pantheon[divinityId];
-    if (divinity) {
-      // 領域を付与することで属性が反転するならスキップする.
-      // Unalignedな領域はどの属性の神格にも付与できる.
-      // Unalignedな神格にGood / Evilの領域が付与されたら、属性が変わる.
-      if (element.alignment !== 0 &&
-        divinity.alignment + element.alignment === 0) {
-        continue;
-      } else {
-        if (divinity.alignment === 0 &&
-          element.alignment !== 0) {
-          divinity.alignment = element.alignment;
-        }
-      }
+    deity.id = i;
+    deity.alignment = utmost.alignment;
 
-      divinity.domains = _.uniq(
-        _.concat(divinity.domains, element.provides));
-      divinity.powers = _.concat(divinity.powers, element.titleJa);
+    deity['domains'] = deity.domains || [];
+    deity.domains.push(utmost.title);
 
-    } else {
-      divinity = {};
-      divinity['id'] = divinityId;
-      divinity['domains'] = element.provides;
-      divinity['powers'] = [element.titleJa];
-      divinity['alignment'] = element.alignment;
-
-      pantheon.push(divinity);
-    }
-
-    divinityId++;
+    pantheon.push(deity);
+    deity = {};
+    _.remove(domains, utmost);
   }
 
-  // ナラティヴのタグをあてはめる.
-  data = _.shuffle(AppData.divinity.narrativeFactors);
-  var expelDislikes = Utils.nextBoolean();
-  var racialTags = ['フェイ', 'ドラゴン', 'ドワーフ', 'ジャイアント', 'アビス', '地獄'];
-  var limit = 99;
-  var x = 1;
-  while (x < limit && data.length !== 0) {
-    element = _.sample(data);
-    // 属性が矛盾しないか、無属性の候補を先頭から探索.
-    divinity = _.find(pantheon, function(entry) {
-      return (entry.alignment === 0 || entry.alignment === element.alignment);
-    });
-
-    var expels = [];
-    var narrativitySatisfied = true;
-    // 競合する要素が存在するかどうかを検査
-    if (element.expels.length !== 0) {
-      expels = _.map(element.expels, function(index) {
-        return self.primaryDomains[index];
+  var tagsFrequency = {};
+  _.forEach(pantheon, function(p) {
+    var domainsOwning = Utils.nextInt(4) - 1;
+    for (var j = 0; j < domainsOwning; j++) {
+      var candidates = _.filter(domains, function (entry) {
+        return entry.alignment === 0 || entry.alignment === p.alignment;
       });
-      for (var k = 0; k < expels.length; k++) {
-        if (_.indexOf(divinity.powers, expels[k]) !== -1) {
-          narrativitySatisfied = false;
-          break;
-        }
+      if (!candidates || candidates.length === 0) {
+        break;
+      }
+      var subDomain = _.sample(candidates);
+      while (_.indexOf(p.domains, subDomain.title) > -1) {
+        subDomain = _.sample(candidates);
+      }
+      var tag = subDomain.title;
+      var freq = tagsFrequency[tag] || 0;
+      // if tag is already used, retry just one time.
+      if (freq > 0) {
+        subDomain = _.sample(_.without(candidates, subDomain));
+        tag = subDomain.title;
+        freq = tagsFrequency[tag] || 0;
+      }
+      tagsFrequency[tag] = ++freq;
+      p.domains.push(tag);
+
+      if (subDomain.weight === 1 || freq > 1) {
+        _.remove(domains, subDomain);
       }
     }
-
-    // 種族ナラティヴは1柱につき1つ.
-    if (_.includes(racialTags, element.titleJa) && divinity.hasRacialTag) {
-      narrativitySatisfied = false;
-    }
-
-    if (narrativitySatisfied) {
-
-      if (_.includes(racialTags, element.titleJa)) {
-        divinity.hasRacialTag = true;
-      }
-
-      // 属性が変わる場合は上書き.
-      if (divinity.alignment !== element.alignment) {
-        divinity.alignment = element.alignment;
-      }
-
-      divinity.narratives = divinity.narratives || [];
-      divinity.narratives.push(element.titleJa);
-
-      _.remove(data, element);
-    }
-    var _debugOut = JSON.stringify({
-      divinity: divinity,
-      narrative: element.titleJa,
-      expels: expels
-    });
-    console.log(_debugOut);
-
-    // 無作為に抽出するためにシャッフル.
-    pantheon = _.shuffle(pantheon);
-    x++;
-  }
+  });
 
   return pantheon;
 }
@@ -261,19 +205,15 @@ Page.prototype.init = function() {
     var pantheon = self.generatePantheon();
     console.log(JSON.stringify(pantheon));
     var dataArray = [];
-    for (var i = 0; i < pantheon.length; i++) {
-      var p = pantheon[i];
-      dataArray.push([
-        p.id,
-        Utils.join(p.powers),
-        (p.narratives) ? Utils.join(p.narratives) : ''
-      ]);
-    }
+    _.forEach(pantheon, function(p) {
+      dataArray.push(p.id + '\t' + _.join(p.domains, '\t'));
+    });
     $('#handson-sample').empty();
-    new Handsontable(
-      document.getElementById('handson-sample'),
-      {data: dataArray}
-    );
+    // new Handsontable(
+    //   document.getElementById('handson-sample'),
+    //   {data: dataArray}
+    // );
+    $('#debug-ta').text(_.join(dataArray, '\n'));
   });
 
   self.createDomainHeader();

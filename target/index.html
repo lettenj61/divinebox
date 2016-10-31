@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>DEMO WITH PURE CSS</title>
+    <title>pure-css</title>
     <link rel="stylesheet" href="./css/pure-min.css">
     <link rel="stylesheet" href="./css/handsontable.full.css">
     <link rel="stylesheet" href="./css/custom.css">
@@ -13,15 +13,19 @@
     <script src="./libs/handsontable.full.js"></script>
     <script src="./data.js"></script>
     <script src="./script.js"></script>
+    <script src="./addons.js"></script>
     <div id="grid-wrapper" class="pure-g">
       <div id="left-reserve" class="pure-u-1-8"></div>
       <div id="main" class="pure-u-3-4">
-        <h1>Hello?</h1>
+        <h1>Test Page</h1>
         <p>Next generation futures.</p>
-        <p id="debug-area"></p>
+        <p id="debug-area">
+          <textarea id="debug-ta" rows="32" cols="80"></textarea>
+        </p>
         <p id="content-control">
-          <button id="toggle-domain-refs" class="button-sm pure-button">領域表の表示ON/OFF</button>
-          <button id="generate-pantheon" class="button-sm pure-button">パンテオン生成</button>
+          <button id="toggle-domain-refs" class="button-sm pure-button">SHOW/HIDE DOMAINS</button>
+          <button id="generate-pantheon" class="button-sm pure-button">GET PANTHEON</button>
+          <!--button#convert-tsv-test.button-sm.pure-button TSVテスト-->
         </p>
         <div id="sandwitch"></div>
         <div id="dice-function">
@@ -46,7 +50,7 @@
               <option value="20">20</option>
               <option value="100">100</option>
             </select>
-            <button id="roll-button" class="button-sm pure-button">振る!</button>
+            <button id="roll-button" class="button-sm pure-button">GO!</button>
             <input id="roll-result" type="text" readonly>
           </p>
         </div>
