@@ -25,11 +25,13 @@ html
         p#debug-area
           textarea#debug-ta(rows="16" cols='80')
           button#clear-debug-ta.button-sm.pure-button CLEAR
+          input#switch-jp-locale.pure-check(type="checkbox")
+          span(style="margin: 0.2em;") use japanese
         p#content-control
           //- button#pushme.button-sm.button-success.pure-button PUSH
           button#toggle-domain-refs.button-sm.pure-button SHOW/HIDE DOMAINS
           button#generate-pantheon.button-sm.pure-button GET PANTHEON
-          input#toggle-json-utils(type="checkbox")
+          input#toggle-json-utils.pure-checkbox(type="checkbox")
           span(style="margin: 0.2em;") JSON utilities
         #sandwitch
         #dice-function
@@ -45,7 +47,7 @@ html
             input#roll-result(type="text" readonly)
         #json-utils(style="margin-bottom: 3.2em; display: none;")
           textarea#json-formatter-ta(rows="8" cols='80')
-          button#json-fomat.button-sm.pure-button FORMAT TSV
+          button#json-format.button-sm.pure-button FORMAT TSV
         #auto-generate
           table#generated-data.table-ja.pure-table
           #handson-sample

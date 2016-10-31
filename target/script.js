@@ -63,8 +63,9 @@ var Page = function() {
 
   this.domainRefVisible = false;
   this.jsonUtilsVisible = false;
+  this.japaneseLocale = false;
 
-  this.gridView = null;
+  this.generatedPantheonData = null;
 };
 
 
@@ -116,6 +117,7 @@ Page.prototype.generatePantheon = function() {
 
     deity.id = i;
     deity.name = name.name;
+    deity.nameJa = name.nameJa;
     deity.alignment = utmost.alignment;
 
     deity['domains'] = deity.domains || [];
@@ -219,6 +221,13 @@ Page.prototype.init = function() {
   // デバッグ出力領域クリアボタン
   $('#clear-debug-ta').click(function() {
     $('#debug-ta').text('');
+    if (self.generatedPantheonData !== null) {
+      self.generatedPantheonData = null;
+    }
+  });
+  // ロケール切り替え
+  $('#switch-jp-locale').click(function() {
+    self.japaneseLocale = !(self.japaneseLocale);
   });
 
   // 領域対応表トグルのハンドラ
@@ -245,7 +254,7 @@ Page.prototype.init = function() {
       'block'
     )
   });
-  $('#json-fomat').click( function() {
+  $('#json-format').click( function() {
     var input = $('#json-formatter-ta').val();
     $('#debug-ta').text(
       JSON.stringify(Utils.convertCsvData(input, '\n', '\t')));
@@ -253,12 +262,15 @@ Page.prototype.init = function() {
 
   // パンテオン生成ボタンのハンドラ
   $('#generate-pantheon').click( function() {
-    var pantheon = self.generatePantheon();
+    var jpLocale = (self.japaneseLocale) ? 'Ja' : '';
+    if (self.generatedPantheonData === null) {
+      self.generatedPantheonData = self.generatePantheon();
+    }
     //console.log(JSON.stringify(pantheon));
     var dataArray = [];
-    _.forEach(pantheon, function(p) {
-      var v = [p.id, p.name];
-      dataArray.push(_.join(v.concat(p.domains), '\t'));
+    _.forEach(self.generatedPantheonData, function(p) {
+      var v = [p.id, p['name' + jpLocale]];
+      dataArray.push(_.join(v.concat(p['domains' + jpLocale]), '\t'));
     });
     $('#debug-ta').text(_.join(dataArray, '\n'));
   });
