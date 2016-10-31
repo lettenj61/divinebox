@@ -227,7 +227,7 @@ AppData.divinity = {
       "alignment": 0
     },
     {
-      "narrative": "Depp one",
+      "narrative": "Deep one",
       "narrativeJa": "深きもの",
       "domain": "",
       "domainJa": "",
@@ -317,8 +317,8 @@ AppData.divinity = {
     {
       "narrative": "Snake",
       "narrativeJa": "蛇",
-      "domain": "",
-      "domainJa": "",
+      "domain": "Poison",
+      "domainJa": "毒",
       "weight": 0,
       "alignment": 0
     },

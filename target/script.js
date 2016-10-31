@@ -100,6 +100,39 @@ Page.prototype.createDomainRows = function() {
   * AppData.jsに定義されている要素をシャッフルしてパンテオンをランダム生成.
   */
 Page.prototype.generatePantheon = function() {
+
+  var generateSingleDeity = function(
+    id, remainingDomains, remainingNames, narrativeToAssign) {
+    var assignName = _.sample(remainingNames);
+    _.remove(remainingNames, assignName);
+
+    var specifiedDeity = {
+      'id': id,
+      'name': assignName.name,
+      'nameJa': assignName.nameJa,
+      'domains': [narrativeToAssign.domain],
+      'domainsJa': [narrativeToAssign.domainJa]
+    };
+
+    var domainsCount = Utils.nextInt(3);
+    while (domainsCount > 0) {
+      var chosenDomain = _.sample(_.filter(remainingDomains, function(entry) {
+        return entry.alignment === 0 || entry.alignment === narrativeToAssign.alignment;
+      }));
+      if (!chosenDomain) {
+        break;
+      }
+      specifiedDeity.domains.push(chosenDomain.title);
+      specifiedDeity.domainsJa.push(chosenDomain.titleJa);
+      _.remove(remainingDomains, chosenDomain);
+      domainsCount--;
+    }
+    specifiedDeity.domains.push(narrativeToAssign.narrative);
+    specifiedDeity.domainsJa.push(narrativeToAssign.narrativeJa);
+
+    return specifiedDeity;
+  };
+
   var domains = _.cloneDeep(AppData.divinity.divinePowerDomains);
   var names = _.cloneDeep(AppData.names.supernatural);
   var pantheonSize = Utils.nextInt(8) + 8;
@@ -181,6 +214,11 @@ Page.prototype.generatePantheon = function() {
     if (accepted) {
       accepted.domains.push(n.narrative);
       accepted.domainsJa.push(n.narrativeJa);
+    } else if (n.weight === 1) {
+      console.log(pantheon.length);
+      pantheon.push(
+        generateSingleDeity(pantheon.length, domains, names, n)
+      );
     }
   });
 
