@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>DD4 Class Features Ja</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/feature-page.css">
+    <!--link(rel="stylesheet" href="./css/custom.css")-->
+  </head>
+  <body>
+    <script src="./libs/jquery-2.2.4.min.js"></script>
+    <script src="./libs/bootstrap.min.js"></script>
+    <script src="./eye-candy.js"></script>
+    <div id="wrapper">
+      <div id="menu" class="row">
+        <div id="menu-area-reserve" class="col-md-1"></div>
+        <div id="menu-area-body" class="col-md-10">
+          <h1>TITLE</h1>
+          <div id="menu-buttons" role="group" class="btn-group">
+            <button id="exec-greeter" type="button" class="btn btn-default">Hi!</button>
+          </div>
+        </div>
+      </div>
+      <div id="content" class="row">
+        <div id="content-reserve" class="col-md-1"></div>
+        <div id="content-body" class="col-md-10">
+          <div id="main-screen" class="col-md-6">
+            <pre>Line2</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      $( function() {
+        new EyeCandy().init();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+//output:../target/classfeatures.html
+
+doctype html
+html
+  head
+    meta(http-equiv="Content-Type" content="text/html; charset=UTF-8")
+    title DD4 Class Features Ja
+    link(rel="stylesheet" href="./css/bootstrap.min.css")
+    link(rel="stylesheet" href="./css/feature-page.css")
+    //link(rel="stylesheet" href="./css/custom.css")
+  body
+    script(src="./libs/jquery-2.2.4.min.js")
+    script(src="./libs/bootstrap.min.js")
+    script(src="./eye-candy.js")
+    #wrapper
+      #menu.row
+        #menu-area-reserve.col-md-1
+        #menu-area-body.col-md-10
+          h1 TITLE
+          #menu-buttons.btn-group(role="group")
+            button#exec-greeter.btn.btn-default(type="button") Hi!
+      #content.row
+        #content-reserve.col-md-1
+        #content-body.col-md-10
+          #main-screen.col-md-6
+            pre Line2
+    script.
+      $( function() {
+        new EyeCandy().init();
+      });
